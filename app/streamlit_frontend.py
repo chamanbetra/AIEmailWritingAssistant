@@ -1,19 +1,12 @@
 import streamlit as st
 import requests
-import os
+from get_flask_port import get_flask_port
 
 st.title("AI Email Reply Assistant")
 
 email_body = st.text_area("Enter the email content")
 tone_style = st.selectbox("Choose the tone style:", ["professional", "casual", "friendly"])
-
-flask_port = os.getenv('FLASK_PORT')
-if not flask_port:
-    try:
-        with open("flask_port.txt", "r") as f:
-            flask_port = f.read().strip()
-    except FileNotFoundError:
-        st.error("Flask port not found. Make sure Flask is running.")
+flask_port = get_flask_port()
 
 if st.button("Generate reply"):
     if email_body:

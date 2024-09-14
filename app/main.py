@@ -1,5 +1,6 @@
 import socket
 import os
+import time
 from flask import Flask, request, jsonify
 from langchain_email import analyze_email, detect_tone, generate_reply
 
@@ -14,7 +15,13 @@ def find_available_port(default_port=5000):
         return default_port
     except OSError:
         sock.close()
-        return 0
+
+    # Try finding the next available port dynamically
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.bind(("0.0.0.0", 0))  # Bind to an available port selected by the OS
+    available_port = sock.getsockname()[1]
+    sock.close()
+    return available_port
 
 @app.route("/generate-reply", methods=["POST"])
 def generate_email_reply():
@@ -36,5 +43,10 @@ def generate_email_reply():
 
 if __name__ == "__main__":
     port = find_available_port(default_port=5000)
-    os.environ['FLASK_PORT'] = str(port)
+
+    with open("flask_port.txt", "w") as f:
+        f.write(f"{port}\n")
+        
+    print(f"Running server on port {port}", flush=True)
+
     app.run(host="0.0.0.0", port=port)

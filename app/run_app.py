@@ -14,7 +14,7 @@ def run_streamlit():
 if __name__ == "__main__":
     flask_process = run_flask()
 
-    time.sleep(2)
+    time.sleep(10)
 
     streamlit_process = run_streamlit()
 
