@@ -71,7 +71,7 @@ Accepts the body of an email and generates a context-aware reply.
   "email_body": "Your email content here",
   "tone_style": "professional"
 }
-
+```
 **Response**:
 ```json
 {
@@ -79,7 +79,7 @@ Accepts the body of an email and generates a context-aware reply.
   "tone": "Detected tone",
   "reply": "Generated reply based on the content"
 }
-
+```
 ## Future Enhancements
 
 - **Multi-language Support**: Add support for generating replies in multiple languages to accommodate a broader range of users.
