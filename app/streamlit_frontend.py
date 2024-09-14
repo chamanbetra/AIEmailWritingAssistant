@@ -4,7 +4,7 @@ from get_flask_port import get_flask_port
 
 st.title("AI Email Reply Assistant")
 
-email_body = st.text_area("Enter the email content")
+email_body = st.text_area("Enter the email content", height=300)
 tone_style = st.selectbox("Choose the tone style:", ["professional", "casual", "friendly"])
 flask_port = get_flask_port()
 
