@@ -1,4 +1,5 @@
 import socket
+import os
 from flask import Flask, request, jsonify
 from langchain_email import analyze_email, detect_tone, generate_reply
 
@@ -35,4 +36,5 @@ def generate_email_reply():
 
 if __name__ == "__main__":
     port = find_available_port(default_port=5000)
+    os.environ['FLASK_PORT'] = str(port)
     app.run(host="0.0.0.0", port=port)
