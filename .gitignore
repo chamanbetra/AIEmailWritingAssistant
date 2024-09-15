@@ -12,7 +12,6 @@ venv/
 # Docker
 *.log
 docker-compose.yml
-Dockerfile
 .dockerignore
 
 # Environment
